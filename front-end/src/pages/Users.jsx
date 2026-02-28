@@ -23,6 +23,13 @@ function Users() {
           </Link>
         </div>
       ))}
+
+
+      <div>
+        <Link to={"/NewUser"}>
+          <button>Crear Nuevo usuário</button>
+        </Link>
+      </div>
     </div>
   );
 }

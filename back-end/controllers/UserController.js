@@ -5,7 +5,7 @@ class UserController {
 
     // ruta para testear conexión
     async hola (req,res) {
-        res.send("HOlaaa desde el back-end")
+        res.send("Holaaa desde el back-end")
     }
 
     // ruta para mostrar todos los usuarios
