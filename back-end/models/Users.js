@@ -16,7 +16,7 @@ const Users = sequelize.define("Users", {
 
     color: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     }
 })
 
