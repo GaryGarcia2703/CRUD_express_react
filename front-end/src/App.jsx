@@ -1,34 +1,16 @@
-import { useEffect, useState } from "react";
-import Users from "./pages/user";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Users from "./pages/users";
+import UserDetail from "./pages/UserDetail";
 
 function App() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/users")
-      .then(res => res.json())
-      .then(data => {
-        console.log("Datos recibidos:", data);
-        setUsers(data);
-      })
-      .catch(err => console.error("Error:", err));
-  }, []);
-
   return (
-    <div>
-      <h1>Usuarios desde MySQL</h1>
-
-      {users.map(user => (
-        <div key={user.id}>
-          <p>Nombre: {user.name}</p>
-          <p>Edad: {user.age}</p>
-          <p>Color: {user.color}</p>
-        </div>
-      ))}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Users />} />
+        <Route path="/users/:id" element={<UserDetail />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 
 export default App;
