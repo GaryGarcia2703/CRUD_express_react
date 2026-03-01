@@ -1,5 +1,5 @@
 import { useState } from "react";
-async function NewUser () {
+function NewUser () {
 
     // aplicando el useState en los campos de contraseñas y nombre
     const [name, setName] = useState("")
@@ -11,21 +11,29 @@ async function NewUser () {
 
         // campos de donde sacaremos y guardaré los datos
         const data = {name, password}
+
+
+        // constante para definir la ruta de back-end adonde seran enviados los datos 
+
+        try {
+            const response = await fetch("http://localhost:3000/api/CreateUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+
+        // constante para esperar la respuesta de conxión con la ruta
+        const result = await response.json();
+        console.log(result)
+
+        } catch (error) {
+            console.error("Error al crear usuario:", error)
+        }
+        
+
     } 
-
-    // constante para definir la ruta de back-end adonde seran enviados los datos 
-    const response = await fetch("http://localhost:3000/api/CreateUser", {
-        method: "POST",
-        header: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-
-
-    // constante para esperar la respuesta de conxión con la ruta
-    const result = await response.json();
-    console.log(result)
 
     return (
         <>
@@ -35,6 +43,7 @@ async function NewUser () {
                 <input 
                 type="text" 
                 placeholder="nombre de usuario"
+                value={name}
                 // evento al cambiar el valor del input, para este guardarlo en el UseState
                 onChange={(e) => setName(e.target.value)}
                 />
@@ -42,6 +51,7 @@ async function NewUser () {
                 <input 
                 type="password"
                 placeholder="contraseña"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                  />           
 
