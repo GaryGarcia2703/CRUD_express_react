@@ -3,20 +3,21 @@ function NewUser () {
 
     // aplicando el useState en los campos de contraseñas y nombre
     const [name, setName] = useState("")
-    const [password, setPassword] = useState("")
+    const [age, SetAge] = useState("")
+    const [color, SetColor] = useState("")
 
     // funcion para guardar los datos y tranformalos en JSON para no ser html puro
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // campos de donde sacaremos y guardaré los datos
-        const data = {name, password}
+        // campos de donde sacaremos y enviaremos los datos al back=end
+        const data = {name, age, color}
 
 
         // constante para definir la ruta de back-end adonde seran enviados los datos 
 
         try {
-            const response = await fetch("http://localhost:3000/api/CreateUser", {
+            const response = await fetch("http://localhost:3000/api/createUser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,8 +29,15 @@ function NewUser () {
         const result = await response.json();
         console.log(result)
 
+        // logica para informar al usuario si este fue creado o no
+        if (result.succes) {
+            console.log(result.message)
+        } else {
+             console.log(result.message)
+        }
+
         } catch (error) {
-            console.error("Error al crear usuario:", error)
+            console.log("Error al crear usuario:", error)
         }
         
 
@@ -42,6 +50,7 @@ function NewUser () {
             <legend>Nuevo usuario</legend>
                 <input 
                 type="text" 
+                required
                 placeholder="nombre de usuario"
                 value={name}
                 // evento al cambiar el valor del input, para este guardarlo en el UseState
@@ -49,11 +58,20 @@ function NewUser () {
                 />
 
                 <input 
-                type="password"
-                placeholder="contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                 />           
+                type="number"
+                required
+                placeholder="Edad"
+                value={age}
+                onChange={(e) => SetAge(e.target.value)}
+                />
+
+                <input 
+                type="text"
+                required
+                placeholder="color  favorito"
+                value={color}
+                onChange={(e) => SetColor(e.target.value)}
+                 />                   
 
                 <button type="submit">Crear</button>
 

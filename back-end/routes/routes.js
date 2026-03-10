@@ -8,12 +8,12 @@ const UserController = require("../controllers/UserController")
 router.get("/hola", UserController.hola)
 
 // ruta para enviar usuario de la DB
-router.get("/Users" , UserController.ShowUsers)
+router.get("/users" , UserController.ShowUsers)
 
 // ruta para mostrar usuario en especifico
-router.get("/User/:id" , UserController.ShowOneUser)
+router.get("/user/:id" , UserController.ShowOneUser)
 
-router.post("/CreateUser" , UserController.CreateNewUser)
+router.post("/createUser" , UserController.CreateNewUser)
 
 module.exports = router;
 

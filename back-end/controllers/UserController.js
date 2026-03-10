@@ -41,16 +41,32 @@ class UserController {
 
     // ruta para crea un nuevo usuario
     async CreateNewUser (req,res) {
-        console.log("probando ruta")
-        const {name, password} = req.body
-        const User = req.body
-        await Users.create({
-            mane,
-            age,
-            color
-        })
 
-        res.json(User)
+        try {
+            console.log("probando ruta")
+
+            const {name, age, color} = req.body
+            const User = req.body
+
+            await Users.create({
+                name,
+                age,
+                color
+            })
+
+            res.json({
+                succes: true,
+                message: "Usuario creado con exito"
+            })
+        }
+        
+        catch (error) {
+            res.json({
+                succes: false,
+                message: "error al crear usuario"
+            })
+        }
+        
     }
 
     
