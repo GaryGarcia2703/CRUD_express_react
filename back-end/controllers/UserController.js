@@ -55,14 +55,14 @@ class UserController {
             })
 
             res.json({
-                succes: true,
+                success: true,
                 message: "Usuario creado con exito"
             })
         }
         
         catch (error) {
             res.json({
-                succes: false,
+                success: false,
                 message: "error al crear usuario"
             })
         }

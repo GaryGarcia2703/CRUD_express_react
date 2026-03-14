@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function NewUser () {
 
     // aplicando el useState en los campos de contraseñas y nombre
     const [name, setName] = useState("")
     const [age, SetAge] = useState("")
     const [color, SetColor] = useState("")
+
+    // aplicando useState en el resuiltado para mostrarlo al crear un usuario
+    const [resultado , SetResultado] = useState("")
+
+    // aplicando navigate para usarlo aqui
+    const navigate = useNavigate();
 
     // funcion para guardar los datos y tranformalos en JSON para no ser html puro
     const handleSubmit = async (e) => {
@@ -18,23 +26,28 @@ function NewUser () {
 
         try {
             const response = await fetch("http://localhost:3000/api/createUser", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
 
-        // constante para esperar la respuesta de conxión con la ruta
-        const result = await response.json();
-        console.log(result)
+            // constante para esperar la respuesta de conxión con la ruta
+            const result = await response.json();
+            console.log(result)
 
-        // logica para informar al usuario si este fue creado o no
-        if (result.succes) {
-            console.log(result.message)
-        } else {
-             console.log(result.message)
-        }
+            // // logica para informar al usuario si este fue creado o no
+            if (!result.success) {
+                console.log("erro")
+                SetResultado(result.message)
+            }
+
+            SetResultado(result.message)
+
+            // redireccionar el usuario a la lista de ususrios al crear MOSTRARLO EN EL DASHBOARD
+            // navigate("/")           
+    
 
         } catch (error) {
             console.log("Error al crear usuario:", error)
@@ -72,6 +85,10 @@ function NewUser () {
                 value={color}
                 onChange={(e) => SetColor(e.target.value)}
                  />                   
+
+                <div>
+                    {resultado}
+                </div>
 
                 <button type="submit">Crear</button>
 
