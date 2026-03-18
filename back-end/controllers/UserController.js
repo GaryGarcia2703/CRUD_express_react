@@ -69,7 +69,25 @@ class UserController {
         
     }
 
-    
+     async DeleteUser (req,res) {
+        const { id } = req.body
+        try {
+            await Users.destroy({
+                where: {id: id}
+            })
+
+            res.json({
+                success: true,
+                message: "Usuario Borrado"
+            })
+        } catch(error) {
+             res.json({
+                success: false,
+                message: "error al borrar el usuario"
+            })
+        }
+        
+    }
 }
 
 module.exports = new UserController();

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 function Users() {
   const [users, setUsers] = useState([]);
+  
+  // use useState para mostrar si hay nuevos usuarios creados
+  const [AvisoUser, SetAvisoUser] = useState()
 
   useEffect(() => {
     fetch("http://localhost:3000/api/users")
@@ -21,6 +24,10 @@ function Users() {
           <Link to={`/users/${user.id}`}>
             <button>Ver usuario</button>
           </Link>
+
+          <Link to={"/DeleteUser"}>
+           <button>Borrar usuario</button>
+          </Link>
         </div>
       ))}
 
@@ -29,7 +36,7 @@ function Users() {
         <Link to={"/NewUser"}>
           <button>Crear Nuevo usuário</button>
         </Link>
-      </div>
+      </div>     
     </div>
   );
 }

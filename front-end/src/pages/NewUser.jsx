@@ -46,7 +46,11 @@ function NewUser () {
             SetResultado(result.message)
 
             // redireccionar el usuario a la lista de ususrios al crear MOSTRARLO EN EL DASHBOARD
-            // navigate("/")           
+            navigate("/" , { state: { 
+                success: true, 
+                message: "Usuario creado" 
+                } 
+            })          
     
 
         } catch (error) {
@@ -55,6 +59,10 @@ function NewUser () {
         
 
     } 
+
+    function AvisoUsuario() {
+
+    }
 
     return (
         <>
