@@ -25,7 +25,7 @@ function Users() {
             <button>Ver usuario</button>
           </Link>
 
-          <Link to={"/DeleteUser"}>
+          <Link to={`/DeleteUser/${user.id}`}>
            <button>Borrar usuario</button>
           </Link>
         </div>

@@ -1,61 +1,64 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function DeleteUser() {
-    const [users, setUsers] = useState([]);
+ function DeleteUser() {
+    const [data, setData] = useState("");
+    const [resultado, SetResultado] = useState("")
     const { id } = useParams() // lee el id desde la url
 
-    useEffect(() => {
-        fetch`http://localhost:3000/api/deleteUser/${id}`
-        .then(res => res.json())
-        .then(data => setUsers(data))
-    }, [id])
+    // aplicando navigate para usarlo aqui
+    const navigate = useNavigate();
+
+    async function Confirmar() {
+            try {
+
+                // buscar informaciones al back-end en la ruta DeleteUser
+                const response = await fetch(`http://localhost:3000/api/deleteUser/${id}` , {
+                    method: "DELETE" // aqui colocamos el http verb como delete que el el fetch usa solamente el metodo GET
+                })
+
+                // constante para esperar la respuesta de conexión con la ruta (obtener datos)
+                const result = await response.json();
+
+                // logica para informar si el usuario fue borrado
+                if (!result.success) {
+                    console.log("erro")
+                    SetResultado(result.message)
+                }
+
+                /*
+                // guardar el valor del resultado en el stado dela variable
+                // ------LUEGOO PARA MOSTRAR EN EL DASHBOARDDDD -----
+                 "data"
+                setData(result.message)
+                */
+
+                // redirecionar
+                navigate("/" , {state: {
+                    success: true,
+                    message: "Usuario borrado"
+                }})  
+                
+
+            } catch (error) {
+                console.log("Error al BORRAR usuario:", error)
+            }
+    }
+
+    function Cancelar() {
+        navigate("/")
+    }
 
 
-/*     
-🧠 Preguntas clave para que lo soluciones
-
-👉 ¿Dónde deberías poner el fetch para eliminar?
-
-¿en useEffect?
-
-¿o cuando el usuario haga click?
-
-👉 ¿Qué evento usarías para el botón "sí"?
-
-Pista:
-
-onClick
-
-👉 Después de borrar:
-
-¿Cómo vuelves al dashboard?
-
-(Pista: ya usaste esto antes 😉)
-
-👉 ¿Tiene sentido guardar datos en users aquí?
-
-O solo necesitas:
-
-confirmar → borrar → salir
-🧠 Mini resumen estilo mentor
-
-Tu código ahora mismo:
-
-intenta borrar automáticamente
-pero lo hace mal (fetch incorrecto)
-y además sin interacción del usuario
- */
     return (
         <>
             <div>
-                <form action="GET">
                     <h2>Deseas borrar este usuario?</h2>
 
-                    <input type="submit" value={"si"}/> 
-
-                    <input type="button" value={"no"}/>
-                </form>
+                    <button onClick={Confirmar}>Sí</button>
+                    <button onClick={Cancelar}>No</button>
             </div>
         </>
     )
