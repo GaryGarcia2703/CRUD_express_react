@@ -12,7 +12,8 @@ function DeleteUser() {
     }, [id])
 
 
-    🧠 Preguntas clave para que lo soluciones
+/*     
+🧠 Preguntas clave para que lo soluciones
 
 👉 ¿Dónde deberías poner el fetch para eliminar?
 
@@ -44,6 +45,7 @@ Tu código ahora mismo:
 intenta borrar automáticamente
 pero lo hace mal (fetch incorrecto)
 y además sin interacción del usuario
+ */
     return (
         <>
             <div>
