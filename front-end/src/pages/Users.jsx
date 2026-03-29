@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "../../public/css/users.css"
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -15,26 +16,31 @@ function Users() {
 
   return (
     <div>
-      <h1>Lista de usuarios</h1>
+      <h1>Lista De Usuarios</h1>
 
+    <div className="Users-conteiner">
       {users.map(user => (
-        <div key={user.id}>
-          <p>{user.name}</p>
+        <div className="User-conteiner" key={user.id}>
+          <p id="Username">{user.name}</p>
 
-          <Link to={`/users/${user.id}`}>
-            <button>Ver usuario</button>
-          </Link>
+          <section id="User-buttons">
+            <Link to={`/users/${user.id}`}>
+              <button id="showUser">Ver usuario</button>
+            </Link>
 
-          <Link to={`/DeleteUser/${user.id}`}>
-           <button>Borrar usuario</button>
-          </Link>
+            <Link to={`/DeleteUser/${user.id}`}>
+            <button id="Delete">Borrar usuario</button>
+            </Link>
+          </section>
+
         </div>
       ))}
+    </div>
 
 
-      <div>
+      <div id="Create-btn-conteiner">
         <Link to={"/NewUser"}>
-          <button>Crear Nuevo usuário</button>
+          <button id="Create"> + Crear Nuevo usuário</button>
         </Link>
       </div>     
     </div>
