@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../../public/css/NewUser.css"
 function NewUser () {
 
     // aplicando el useState en los campos de contraseñas y nombre
@@ -66,43 +67,49 @@ function NewUser () {
 
     return (
         <>
-        <fieldset>
-            <form onSubmit={handleSubmit}>
-            <legend>Nuevo usuario</legend>
-                <input 
-                type="text" 
-                required
-                placeholder="nombre de usuario"
-                value={name}
-                // evento al cambiar el valor del input, para este guardarlo en el UseState
-                onChange={(e) => setName(e.target.value)}
-                />
+        <div id="fieldset-conteiner">
+            <fieldset>
 
-                <input 
-                type="number"
-                required
-                placeholder="Edad"
-                value={age}
-                onChange={(e) => SetAge(e.target.value)}
-                />
-
-                <input 
-                type="text"
-                required
-                placeholder="color  favorito"
-                value={color}
-                onChange={(e) => SetColor(e.target.value)}
-                 />                   
-
-                <div>
-                    {resultado}
+                <div id="form-conteiner">
+                    <form onSubmit={handleSubmit}>
+                    <legend>Nuevo usuario</legend>
+                        <div id="inputs-conteiner">
+                            <input
+                            type="text"
+                            required
+                            placeholder="nombre de usuario"
+                            value={name}
+                            // evento al cambiar el valor del input, para este guardarlo en el UseState
+                            onChange={(e) => setName(e.target.value)}
+                            />
+                            <input
+                            type="number"
+                            required
+                            placeholder="Edad"
+                            value={age}
+                            onChange={(e) => SetAge(e.target.value)}
+                            />
+                            <input
+                            type="text"
+                            required
+                            placeholder="color  favorito"
+                            value={color}
+                            onChange={(e) => SetColor(e.target.value)}
+                             />
+                            <div>
+                                {resultado}
+                            </div>
+                        </div>
+                        <div id="btn-conteiner">
+                            <button type="submit">Crear</button>
+                            <button type="reset">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
 
-                <button type="submit">Crear</button>
+            </fieldset>
 
-                <button type="reset">Cancelar</button>
-            </form>
-        </fieldset>
+        </div>
         </>
     )
 }

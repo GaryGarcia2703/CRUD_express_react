@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import UserCard from "../components/UserCard";
 
 function UserDetail() {
   const { id } = useParams(); // ← lee el id desde la URL
@@ -14,12 +15,9 @@ function UserDetail() {
   if (!user) return <p>Cargando...</p>;
 
   return (
-    <div>
-      <h2>Detalle del usuario</h2>
-      <p>Nombre: {user.name}</p>
-      <p>Edad: {user.age}</p>
-      <p>Color: {user.color}</p>
-    </div>
+    // Aqui utilize un componente (este archivo es solamente para requisicion) 
+    
+    <UserCard />
   );
 }
 
