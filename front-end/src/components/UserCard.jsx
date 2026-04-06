@@ -1,6 +1,7 @@
 import UserDetail from "../pages/UserDetail";
 
-function UserCard() {
+// recibe el usuario como prop
+function UserCard({ user }) {
     return (
     <div>
       <h2>Detalle del usuario</h2>

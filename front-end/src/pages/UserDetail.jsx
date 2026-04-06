@@ -17,7 +17,8 @@ function UserDetail() {
   return (
     // Aqui utilize un componente (este archivo es solamente para requisicion) 
     
-    <UserCard />
+    // enviar los datos obtenisdo user={user}
+    <UserCard user={user} />
   );
 }
 
