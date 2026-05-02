@@ -1,4 +1,5 @@
 // import de las tablas del DB
+const { READCOMMITTED } = require("sequelize/lib/table-hints");
 const Users = require("../models/Users")
 
 class UserController {
@@ -46,6 +47,22 @@ class UserController {
             console.log("probando ruta")
 
             const {name, age, color} = req.body
+
+            if (name.length > 10) {
+                console.log("NOMBRE MUY LARGO")
+                return res.status(400).json({
+                    success: false,
+                    message: "NOMBRE MUY LARGO"
+                });
+            } 
+
+            if (age > 40) {
+                console.log("EDAD INVALIDA")
+                return res.status(400).json({
+                    success: false,
+                    message: "Edad inválida"
+                });
+            }
             const User = req.body
 
             await Users.create({

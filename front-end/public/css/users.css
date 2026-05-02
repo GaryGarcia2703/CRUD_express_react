@@ -13,6 +13,7 @@ h1 {
 
 div.Users-conteiner {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -20,6 +21,8 @@ div.Users-conteiner {
 }
 
 div.User-conteiner {
+    max-width: 400px;
+    width: 90%;
     background-color: #c8c4b0ce;
     border-radius: 10px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
@@ -53,6 +56,8 @@ p#Username {
 
 section#User-buttons {
     margin: 10px;
+    display: flex;
+    justify-content: center;
 
     /* estilos de los 2 botones */
     button {
