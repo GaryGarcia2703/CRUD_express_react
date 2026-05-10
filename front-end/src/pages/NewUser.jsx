@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import UserForm from "../components/UserForm";
+import ErrorMessage from "../components/ErrorMessage";
 import "../../public/css/NewUser.css"
 function NewUser () {
 
@@ -10,8 +11,11 @@ function NewUser () {
     const [age, SetAge] = useState("")
     const [color, SetColor] = useState("")
 
-    // aplicando useState en el resuiltado para mostrarlo al crear un usuario
-    const [resultado , SetResultado] = useState("")
+    // aplicando useState en el resultado para mostrarlo al crear un usuario o si esto da error
+
+    // use state en caso de error al crear el usuario
+    const [error, setError] = useState("");
+
 
     // aplicando navigate para usarlo aqui
     const navigate = useNavigate();
@@ -39,15 +43,14 @@ function NewUser () {
             const result = await response.json();
             console.log(result)
 
-            // // logica para informar al usuario si este fue creado o no
+            // aqui obtenemos el resultado del back-end (error al crear el usuario)
             if (!result.success) {
-                console.log("erro")
-                SetResultado(result.message)
+                // se guarda el mensaje dentro de usestate Error
+                setError(result.message);
+                return;
             }
 
-            SetResultado(result.message)
-
-            // redireccionar el usuario a la lista de ususrios al crear MOSTRARLO EN EL DASHBOARD
+            // si el usuario fue creado, este es redireccionado al home junto con estos datos,
             navigate("/" , { state: { 
                 success: true, 
                 message: "Usuario creado" 
@@ -62,55 +65,29 @@ function NewUser () {
 
     } 
 
-    function AvisoUsuario() {
-
+    function CancelarBtn() {
+        navigate("/")
     }
+
 
     return (
         <>
-        <div id="fieldset-conteiner">
-            <fieldset>
+            <UserForm
+                name={name}
+                setName={setName}
 
-                <div id="form-conteiner">
-                    <form onSubmit={handleSubmit}>
-                    <legend>Nuevo usuario</legend>
-                        <div id="inputs-conteiner">
-                            <input
-                            type="text"
-                            required
-                            placeholder="nombre de usuario"
-                            value={name}
-                            // evento al cambiar el valor del input, para este guardarlo en el UseState
-                            onChange={(e) => setName(e.target.value)}
-                            />
-                            <input
-                            type="number"
-                            required
-                            placeholder="Edad"
-                            value={age}
-                            onChange={(e) => SetAge(e.target.value)}
-                            />
-                            <input
-                            type="text"
-                            required
-                            placeholder="color  favorito"
-                            value={color}
-                            onChange={(e) => SetColor(e.target.value)}
-                             />
-                            <div>
-                                {resultado}
-                            </div>
-                        </div>
-                        <div id="btn-conteiner">
-                            <button type="submit">Crear</button>
-                            <button type="reset">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
+                age={age}
+                SetAge={SetAge}
 
-            </fieldset>
+                color={color}
+                SetColor={SetColor}
 
-        </div>
+                error={error}
+
+                handleSubmit={handleSubmit}
+
+                CancelarBtn={CancelarBtn}
+            />
         </>
     )
 }

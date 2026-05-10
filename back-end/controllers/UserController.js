@@ -49,15 +49,15 @@ class UserController {
             const {name, age, color} = req.body
 
             if (name.length > 10) {
-                console.log("NOMBRE MUY LARGO")
+                console.log("Nombre muy largo!")
                 return res.status(400).json({
                     success: false,
-                    message: "NOMBRE MUY LARGO"
+                    message: "Nombre muy largo!"
                 });
             } 
 
             if (age > 40) {
-                console.log("EDAD INVALIDA")
+                console.log("Edad inválida")
                 return res.status(400).json({
                     success: false,
                     message: "Edad inválida"

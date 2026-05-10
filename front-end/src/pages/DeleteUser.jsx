@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../public/css/DeleteUser.css"
 
  function DeleteUser() {
     const [data, setData] = useState("");
@@ -54,11 +55,13 @@ import { useNavigate } from "react-router-dom";
 
     return (
         <>
-            <div>
+            <div id="delete-confirmation">
                     <h2>Deseas borrar este usuario?</h2>
 
-                    <button onClick={Confirmar}>Sí</button>
-                    <button onClick={Cancelar}>No</button>
+                    <div id="buttons-conteiner">
+                        <button id="confirmar" onClick={Confirmar}>Sí</button>
+                        <button id="cancelar" onClick={Cancelar}>No</button>
+                    </div>
             </div>
         </>
     )
