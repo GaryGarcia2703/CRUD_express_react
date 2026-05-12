@@ -39,7 +39,7 @@ function NewUser () {
                 body: JSON.stringify(data)
             })
 
-            // constante para esperar la respuesta de conxión con la ruta
+            // constante para esperar la respuesta de conexión con la ruta
             const result = await response.json();
             console.log(result)
 
