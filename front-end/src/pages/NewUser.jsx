@@ -51,9 +51,11 @@ function NewUser () {
             }
 
             // si el usuario fue creado, este es redireccionado al home junto con estos datos,
-            navigate("/" , { state: { 
+            navigate("/" , { 
+                state: { 
                 success: true, 
-                message: "Usuario creado" 
+                message: "Usuario creado" ,
+                type: "create"
                 } 
             })          
     

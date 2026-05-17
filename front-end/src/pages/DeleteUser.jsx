@@ -37,10 +37,13 @@ import "../../public/css/DeleteUser.css"
                 */
 
                 // redirecionar
-                navigate("/" , {state: {
+                navigate("/" , {
+                    state: {
                     success: true,
-                    message: "Usuario borrado"
-                }})  
+                    message: "Usuario borrado",
+                    type: "delete"
+                    }
+                })  
                 
 
             } catch (error) {
