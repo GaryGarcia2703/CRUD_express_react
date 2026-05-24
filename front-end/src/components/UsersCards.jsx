@@ -22,6 +22,10 @@ function UsersCards({ UserContent }) {
                             <Link to={`/DeleteUser/${user.id}`}>
                                 <button id="Delete">Borrar usuario</button>
                             </Link>
+
+                            <Link to={`/UpdateUser/${user.id}`}>
+                                <button id="Update">Actualizar Datos</button>
+                            </Link>
                         </section>
 
                     </div>

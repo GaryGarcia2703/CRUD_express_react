@@ -15,3 +15,7 @@ div#create {
 div#delete {
     background-color: red;
 }
+
+div#update {
+    background-color: blue;
+}

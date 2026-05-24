@@ -16,9 +16,8 @@ function NewUser () {
     // use state en caso de error al crear el usuario
     const [error, setError] = useState("");
 
-
-    // aplicando navigate para usarlo aqui
     const navigate = useNavigate();
+
 
     // funcion para guardar los datos y tranformalos en JSON para no ser html puro
     const handleSubmit = async (e) => {
@@ -27,6 +26,7 @@ function NewUser () {
         // campos de donde sacaremos y enviaremos los datos al back=end
         const data = {name, age, color}
 
+        
 
         // constante para definir la ruta de back-end adonde seran enviados los datos 
 
@@ -75,6 +75,8 @@ function NewUser () {
     return (
         <>
             <UserForm
+                mode="create"
+                handleSubmit={handleSubmit}
                 name={name}
                 setName={setName}
 

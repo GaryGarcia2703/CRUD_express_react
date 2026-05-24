@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import UserCard from "../components/UserCard";
+import UserCard from "../components/UserInfo";
 
 function UserDetail() {
   const { id } = useParams(); // ← lee el id desde la URL

@@ -3,6 +3,8 @@ import Users from "./pages/users";
 import UserDetail from "./pages/UserDetail";
 import NewUser from "./pages/NewUser";
 import DeleteUser from "./pages/DeleteUser";
+import UpdateUser from "./pages/UpdateUser";
+
 
 function App() {
   return (
@@ -11,7 +13,8 @@ function App() {
         <Route path="/" element={<Users />} />
         <Route path="/NewUser" element={<NewUser />} />
         <Route path="/users/:id" element={<UserDetail />} />
-        <Route path="/DeleteUser/:id" element={<DeleteUser />}></Route>
+        <Route path="/DeleteUser/:id" element={<DeleteUser />} />
+        <Route path="/UpdateUser/:id" element={<UpdateUser />} />
       </Routes>
     </BrowserRouter>
   );

@@ -58,6 +58,7 @@ section#User-buttons {
     margin: 10px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 
     /* estilos de los 2 botones */
     button {

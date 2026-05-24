@@ -18,21 +18,19 @@ function Users() {
   }, []);
 
   return (
-    
+
     // pasar la variable (state) con el contenido obtenido del back-end
 
     // pasando el parametro y su valor (dentro de la llaves(users))
 
     <div>
-      
-
-    { /* componente de que noti de que todo salio bien */}
+      { /* componente de que noti de que todo salio bien */}
 
 
       { /* aqui pasamos los datos de newuser al crear un nuevo usuario (como prop) */}
       <Notification message={location.state?.message} type={location.state?.type} />
 
-    { /* renderizar todos los usuarios */}
+      { /* renderizar todos los usuarios */}
       <UsersCards UserContent={users}>
       </UsersCards>
     </div>

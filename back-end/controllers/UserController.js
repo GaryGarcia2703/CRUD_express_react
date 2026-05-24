@@ -1,5 +1,5 @@
 // import de las tablas del DB
-const { READCOMMITTED } = require("sequelize/lib/table-hints");
+
 const Users = require("../models/Users")
 
 class UserController {
@@ -99,13 +99,64 @@ class UserController {
             })
 
         } catch(error) {
-             res.json({
+            res.json({
                 success: false,
                 message: "error al borrar el usuario"
             })
         }
         
     }
+
+    async UpdateUser (req, res) {
+        const { id } = req.params
+
+        const {name, age, color} = req.body
+
+
+        try {
+            // validación de datos
+            if (age > 90) {
+                console.log("edad invalida!")
+                return res.status(400).json({
+                        success: false,
+                        message: "Edad inválida"
+                });
+            }
+
+            if (name.length > 10) {
+                console.log("Nombre muy largo!")
+                return res.status(400).json({
+                    success: false,
+                    message: "Nombre muy largo!"
+                })
+            }
+
+            // antes de actualizar un usuario, validar datos
+
+            const user = req.body
+
+
+            // enivar y actualizar datos
+            await Users.update (user,
+                {
+                    where: {id: id}
+                }
+            ) 
+
+            // enivar respuesta si los datos llegaron a la db
+            res.json({
+                success: true,
+                message: "Datos del usuario actualizados!"
+            })
+        } catch(error) {
+            res.json({
+                success: false,
+                message: "error al actualizar datos del usuario"
+            })
+        }
+       
+        
+    } 
 }
 
 module.exports = new UserController();

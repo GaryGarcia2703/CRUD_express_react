@@ -17,5 +17,7 @@ router.post("/createUser" , UserController.CreateNewUser)
 
 router.delete("/deleteUser/:id" , UserController.DeleteUser)
 
+router.patch("/updateUser/:id" , UserController.UpdateUser)
+
 module.exports = router;
 
